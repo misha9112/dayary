@@ -5,7 +5,12 @@
 <mapper namespace="diary">
 	<select id="list" resultType="diary">
 		select * from diary
-	</select>	   
+	</select>
+	<insert id="add" parameterType="diary">
+		insert into diary
+		values(seq_diary_id.nextval, 'misha', #{title}, #{contents},
+		sysdate)
+	</insert>
 </mapper>
 
 

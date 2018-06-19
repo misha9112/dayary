@@ -10,7 +10,7 @@ import com.inc.dayary.domain.Diary;
 
 @Repository
 public class DiaryDao {
-	
+
 	@Autowired
 	private SqlSession sqlSessoin;
 
@@ -18,9 +18,8 @@ public class DiaryDao {
 		return sqlSessoin.selectList("diary.list");
 	}
 
+	public void add(Diary diary) {
+		sqlSessoin.insert("diary.add", diary);
+	}
+
 }
-
-
-
-
-

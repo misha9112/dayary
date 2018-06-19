@@ -22,7 +22,7 @@
 		<#list diaryList as diary>
 		<div class="row">
 			<div class="well col-sm-8 <#if diary_index%2==1>col-sm-offset-4 text-right</#if>">
-				<h4>${diary.title}</h4>
+				<h4>${diary.title?default('제목없음')}</h4>
 				<h5>Post by ${diary.u_id},  
 					<span class="glyphicon glyphicon-time"></span>
 					${diary.regdate?substring(0,19)}
@@ -32,7 +32,7 @@
 					<span class="label label-success">휴식</span>
 				</h5>
 				<br />
-				<p>${diary.content}</p>
+				<p>${diary.contents}</p>
 			</div>
 		</div>
 		</#list>
