@@ -10,5 +10,4 @@ public interface DiaryService {
 	public List<Diary> list();
 
 	public void add(@Valid Diary diary);
-
 }

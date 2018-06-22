@@ -18,7 +18,13 @@
 			<a href="/diary/add">
 				<span class="glyphicon glyphicon-plus-sign plus"></span>
 			</a>
-		</div>	
+		</div>
+		<#if !diaryList?hasContent>
+			<div class="row">
+				<h4 class="text-center">첫 번째 일기를 작성해 보세요</h4>
+			</div>
+		</#if>	
+		
 		<#list diaryList as diary>
 		<div class="row">
 			<div class="well col-sm-8 <#if diary_index%2==1>col-sm-offset-4 text-right</#if>">
