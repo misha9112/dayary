@@ -7,10 +7,10 @@
 		select * from diary order by
 		regdate desc
 	</select>
-	<insert id="add" parameterType="diary">
-		insert into diary
-		values(seq_diary_id.nextval, 'flynn', #{title},
-		#{contents}, sysdate)
+	<insert id="add" parameterType="diary">insert into
+		diary
+		values(seq_diary_id.nextval, #{u_id}, #{title},#{contents},
+		sysdate)
 	</insert>
 </mapper>
 
