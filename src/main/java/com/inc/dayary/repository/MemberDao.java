@@ -1,7 +1,5 @@
 package com.inc.dayary.repository;
 
-import javax.validation.Valid;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,7 +19,13 @@ public class MemberDao {
 		return sqlSession.selectOne("member.findOneByEmail", email);
 	}
 
-	public void signup(@Valid Member member) {
-		sqlSession.insert("member.signup",member);
+	public void signUp(Member member) {
+		sqlSession.insert("member.signup", member);
+		
 	}
 }
+
+
+
+
+

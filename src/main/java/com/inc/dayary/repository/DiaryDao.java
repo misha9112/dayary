@@ -14,15 +14,19 @@ import com.inc.dayary.domain.Diary;
 public class DiaryDao {
 	
 	@Autowired
-	private SqlSession sqlSessoin;
+	private SqlSession sqlSession;
 
 	public List<Diary> list() {
-		return sqlSessoin.selectList("diary.list");
+		return sqlSession.selectList("diary.list");
 	}
 
-	public void add(@Valid Diary diary) {
-		sqlSessoin.insert("diary.add", diary);
+	public void add(Diary diary) {
+		sqlSession.insert("diary.add", diary);
 		
+	}
+
+	public List<Diary> list(String id) {
+		return sqlSession.selectList("diary.list", id);
 	}
 
 }

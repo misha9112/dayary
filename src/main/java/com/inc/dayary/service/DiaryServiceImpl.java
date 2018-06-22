@@ -22,8 +22,13 @@ public class DiaryServiceImpl implements DiaryService {
 	}
 
 	@Override
-	public void add(@Valid Diary diary) {
+	public void add(Diary diary) {
 		diaryDao.add(diary);
+	}
+
+	@Override
+	public List<Diary> list(String id) {
+		return diaryDao.list(id);
 	}
 
 }

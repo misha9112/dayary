@@ -67,8 +67,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public void signup(@Valid Member member) {
-		memberDao.signup(member);
+	public void signup(Member member) {
+		memberDao.signUp(member);
 	}
 	
 }

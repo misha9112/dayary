@@ -12,6 +12,6 @@ public interface MemberService {
 
 	String sendCertifyEmail(String email);
 
-	void signup(@Valid Member member);
+	void signup(Member member);
 	
 }
