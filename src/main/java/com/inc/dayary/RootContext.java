@@ -14,8 +14,8 @@ public class RootContext {
 		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 		mailSender.setHost("smtp.gmail.com");
 		mailSender.setPort(587);
-		mailSender.setUsername("lognamu@gmail.com");
-		mailSender.setPassword("Increpas!");
+		mailSender.setUsername("phantomknights1@gmail.com");
+		mailSender.setPassword("misha9112!");
 		Properties props = new Properties();
 		props.setProperty("mail.transport.protocol", "smtp");
 		props.setProperty("mail.smtp.auth", "true");
