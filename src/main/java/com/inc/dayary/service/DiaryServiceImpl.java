@@ -29,6 +29,9 @@ public class DiaryServiceImpl implements DiaryService {
 	public void add(Diary diary) {
 		diaryDao.add(diary);
 		int d_id = diary.getId();
+		if(diary.getTags()==null) {
+			return;
+		}
 		for(Tag tag : diary.getTags()) {
 			tag.setD_id(d_id);
 			tagDao.add(tag);
