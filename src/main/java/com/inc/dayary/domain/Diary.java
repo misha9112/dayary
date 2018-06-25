@@ -1,6 +1,7 @@
 package com.inc.dayary.domain;
 
-import javax.validation.constraints.Max;
+import java.util.List;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -13,6 +14,24 @@ public class Diary {
 	@Size(max = 500, message = "500글자 이내로 작성해 주세요")
 	private String contents;
 	private String regdate;
+
+	private List<Tag> tags;
+
+	public String getContents() {
+		return contents;
+	}
+
+	public void setContents(String contents) {
+		this.contents = contents;
+	}
+
+	public List<Tag> getTags() {
+		return tags;
+	}
+
+	public void setTags(List<Tag> tags) {
+		this.tags = tags;
+	}
 
 	public int getId() {
 		return id;
@@ -36,14 +55,6 @@ public class Diary {
 
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-	public String getcontents() {
-		return contents;
-	}
-
-	public void setcontents(String contents) {
-		this.contents = contents;
 	}
 
 	public String getRegdate() {

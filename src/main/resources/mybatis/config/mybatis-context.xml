@@ -3,13 +3,14 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-  <typeAliases>
-  	<package name="com.inc.dayary.domain"/>
-  </typeAliases>
-  <mappers>
-    <mapper resource="mybatis/mapper/diary.xml"/>
-    <mapper resource="mybatis/mapper/member.xml"/>
-  </mappers>
+	<typeAliases>
+		<package name="com.inc.dayary.domain" />
+	</typeAliases>
+	<mappers>
+		<mapper resource="mybatis/mapper/diary.xml" />
+		<mapper resource="mybatis/mapper/member.xml" />
+		<mapper resource="mybatis/mapper/tag.xml" />
+	</mappers>
 </configuration>
 
 

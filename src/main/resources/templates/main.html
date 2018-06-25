@@ -4,46 +4,48 @@
 <#include "/include/header.html"/>
 <title>Wellcom</title>
 <style>
-	.plus{
-		color:black;
-		font-size: 30px;
-		padding-top: 20px;
-	}
+.plus {
+	color: black;
+	font-size: 30px;
+	padding-top: 20px;
+}
 </style>
 </head>
 <body>
 	<#include "/include/nav.html"/>
 	<div class="container">
 		<div class="row text-right">
-			<a href="/diary/add">
-				<span class="glyphicon glyphicon-plus-sign plus"></span>
+			<a href="/diary/add"> <span
+				class="glyphicon glyphicon-plus-sign plus"></span>
 			</a>
 		</div>
 		<#if !diaryList?hasContent>
-			<div class="row">
-				<h4 class="text-center">첫 번째 일기를 작성해 보세요</h4>
-			</div>
-		</#if>	
-		
+		<div class="row">
+			<h4 class="text-center">첫 번째 일기를 작성해 보세요</h4>
+		</div>
+		</#if>
+
 		<#list diaryList as diary>
 		<div class="row">
-			<div class="well col-sm-8 <#if diary_index%2==1>col-sm-offset-4 text-right</#if>">
+			<div
+				class="well col-sm-8 <#if diary_index%2==1>col-sm-offset-4 text-right</#if>">
 				<h4>${diary.title?default('제목없음')}</h4>
-				<h5>Post by ${diary.u_id},  
-					<span class="glyphicon glyphicon-time"></span>
+				<h5>
+					Post by ${diary.u_id}, <span class="glyphicon glyphicon-time"></span>
 					${diary.regdate?substring(0,19)}
 				</h5>
 				<h5>
-					<span class="label label-primary">맑음</span>
-					<span class="label label-success">휴식</span>
-				</h5>
+					<#list diary.tags as tag>
+						<span class="label label-${tag.color}">${tag.name}</span>
+					</#list>
+				</h5> 
 				<br />
 				<p>${diary.contents}</p>
 			</div>
 		</div>
 		</#list>
 	</div>
-<#include "/include/footer.html"/>
+	<#include "/include/footer.html"/>
 </body>
 </html>
 

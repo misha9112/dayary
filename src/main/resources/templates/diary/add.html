@@ -1,58 +1,101 @@
-<#import "/spring.ftl" as spring/>
+<#import "/spring.ftl" as spring />
 <!DOCTYPE html>
 <html>
 <head>
 <#include "/include/header.html"/>
-<link rel="stylesheet" 
-  href="/webjars/summernote/0.8.9/dist/summernote.css">
+<link rel="stylesheet"
+	href="/webjars/summernote/0.8.9/dist/summernote.css">
 <title>Add</title>
 </head>
 <body>
-<#include "/include/nav.html"/>
+	<#include "/include/nav.html"/>
 	<div class="container">
-		<form action="/diary/add" method="post" 
-		      class="form form-horizontal">
-		      <@spring.bind "diary.title"/>
-		      <div class="form-group">
-		      	<label for="" class="control-label col-sm-2">Title</label>
-		      	<div class="col-sm-10">
-		      		<input type="text" name="${spring.status.expression}" 
-		      			   class="form-control"
-		      			   value="${spring.status.value?default('')}"/>
-     				<span class="error">${spring.status.errorMessages[0]?default('')}</span>
-		      	</div>
-		      </div>
-		      <@spring.bind "diary.contents"/>
-		      <div class="form-group">
-		      	<label for="" class="control-label col-sm-2">Content</label>
-		      	<div class="col-sm-10">
-		      		<textarea id="contents" 
-		      	   name="${spring.status.expression}" 
-      			   class="form-control">${spring.status.value?default('')}</textarea>
-      			   	
-     				<span class="error">${spring.status.errorMessages[0]?default('')}</span>
-		      	</div>
-		      </div>
-		      <div class="form-group">
-		      	<div class="col-sm-10 col-sm-offset-2">
-		      		<button type="submit" 
-		      				class="btn btn-default btn-block">submit</button>
-		      	</div>
-		      </div>
+		<form action="/diary/add" method="post" class="form form-horizontal">
+			<@spring.bind "diary.title"/>
+			<div class="form-group">
+				<label for="" class="control-label col-sm-2">Title</label>
+				<div class="col-sm-10">
+					<input type="text" name="${spring.status.expression}"
+						class="form-control" value="${spring.status.value?default('')}" />
+					<span class="error">${spring.status.errorMessages[0]?default('')}</span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-2">Taggin</label>
+				<div class="col-sm-10">
+					<div class="row">
+						<div class="col-sm-2">
+							<input type="text" id="tag-name" class="form-control" />
+						</div>
+						<div class="col-sm-2">
+							<select id="tag-color" class="form-control">
+								<option value="default">기본</option>
+								<option value="danger">빨강</option>
+								<option value="primary">파랑</option>
+								<option value="success">초록</option>
+								<option value="warning">노랑</option>
+							</select>
+						</div>
+						<div class="col-sm-1">
+							<button class="btn btn=default" type="button" onclick="addTag()">추가</button>
+						</div>
+						<div id="tags" class="col-sm-1"></div>
+					</div>
+				</div>
+			</div>
+
+			<@spring.bind "diary.contents"/>
+			<div class="form-group">
+				<label for="" class="control-label col-sm-2">Content</label>
+				<div class="col-sm-10">
+					<textarea id="contents" name="${spring.status.expression}"
+						class="form-control">${spring.status.value?default('')}</textarea>
+
+					<span class="error">${spring.status.errorMessages[0]?default('')}</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-10 col-sm-offset-2">
+					<button type="submit" class="btn btn-default btn-block">submit</button>
+				</div>
+			</div>
 		</form>
 	</div>
-<#include "/include/footer.html"/>
-<script src="/webjars/summernote/0.8.9/dist/summernote.min.js"></script>
-<script src="/webjars/summernote/0.8.9/dist/lang/summernote-ko-KR.js"></script>
-<script>
-	$("#contents").summernote({
-		lang:"ko-KR",
-		tabsize:2,
-		height:150,
-		minHeight:100,
-		maxHeight:200
-	});
-</script>
+	<#include "/include/footer.html"/>
+	<script src="/webjars/summernote/0.8.9/dist/summernote.min.js"></script>
+	<script src="/webjars/summernote/0.8.9/dist/lang/summernote-ko-KR.js"></script>
+	<script>
+		$("#contents").summernote({
+			lang : "ko-KR",
+			tabsize : 2,
+			height : 150,
+			minHeight : 100,
+			maxHeight : 200
+		});
+
+		var idx = 0;
+		function addTag() {
+			var name = $("#tag-name").val();
+			var color = $("#tag-color").val();
+			var $tag = $("<span></span>");
+			$tag.text(name);
+			$tag.addClass("label");
+			$tag.addClass("label-" + color);
+			console.log($tag);
+			$("#tags").append($tag);
+			$("#tags").html($("#tags").html() + "&nbsp;");
+
+			$("#tags")
+					.append(
+							"<input type='hidden' name ='tags["+idx+"].name' value='"+name+"'/>");
+			$("#tags")
+					.append(
+							"<input type='hidden' name ='tags["+idx+"].color' value='"+color+"'/>");
+			// $("#tags").append('<span class="label label-' + $("#tag-color").val() + '">'+ $("#tag-name").val() + '</span>');
+			idx++;
+		}
+	</script>
 </body>
 </html>
 
