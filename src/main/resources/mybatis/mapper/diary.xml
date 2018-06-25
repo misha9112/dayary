@@ -18,7 +18,7 @@
 	<insert id="add" parameterType="diary">
 		insert into diary
 		values(seq_diary_id.nextval, #{u_id}, #{title},
-		#{content}, sysdate)
+		#{contents}, sysdate)
 		<selectKey resultType="int" keyProperty="id" order="AFTER">
 			select
 			seq_diary_id.currval from dual
